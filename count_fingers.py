@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 from HandTracking import HandTracking
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 hand = HandTracking(hands=1, detect_conf=0.7, tracking_conf=0.7)
 while True:
     success, img = cap.read()

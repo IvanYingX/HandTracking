@@ -2,13 +2,13 @@ import cv2
 import mediapipe as mp
 from HandTracking import HandTracking
 import numpy as np
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 cap.set(3, 1280)
 cap.set(4, 720)
 
 hand = HandTracking(hands=1)
 xp = np.array([0, 0])
-imgCanvas = np.zeros((480, 800, 3), np.uint8)
+imgCanvas = np.zeros((720, 1280, 3), np.uint8)
 
 while True:
     success, img = cap.read()

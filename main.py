@@ -3,7 +3,7 @@ import mediapipe as mp
 import time
 from HandTracking import HandTracking
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 time_0 = 0
 hand = HandTracking()
 i = 0
