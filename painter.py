@@ -22,11 +22,16 @@ while True:
         # ring_tip = np.array([lm_list[12][1], lm_list[12][2]])
         
         # dist = np.sqrt(np.sum((index_tip - thumb_tip)**2))
-        if xp[0] == 0 and xp[1] == 0:
-            xp = index_tip 
-        if fingers[1] and fingers[2] == 0:
-            cv2.line(imgCanvas, xp, index_tip, (255, 0, 0), 3) 
-        cv2.line(img, xp, index_tip, (255, 0, 0), 3) 
+        if fingers[0] == 0:
+            if xp[0] == 0 and xp[1] == 0:
+                xp = index_tip 
+            if fingers[1] and fingers[2] == 0:
+                cv2.line(imgCanvas, xp, index_tip, (0, 0, 255), 3) 
+            elif fingers[1] and fingers[2] == 1:
+                cv2.line(imgCanvas, xp, index_tip, (0, 0, 0), 60)
+        elif fingers[0] == 1 and fingers[1] == 0 and fingers[2] == 0 and fingers[3] == 0 and fingers[4] == 1:
+            imgCanvas = np.zeros((720, 1280, 3), np.uint8)
+        cv2.line(img, xp, index_tip, (255, 255, 0), 3) 
         xp = index_tip
     imgGray = cv2.cvtColor(imgCanvas, cv2.COLOR_BGR2GRAY)
     _, imgInv = cv2.threshold(imgGray, 20, 255, cv2.THRESH_BINARY_INV)
@@ -35,6 +40,6 @@ while True:
     img = cv2.bitwise_or(img, imgCanvas)
     # img = cv2.addWeighted(img, 0.9, imgCanvas, 0.1, 0)
     cv2.imshow('Image', img)
-    cv2.imshow('Canvas', imgCanvas)
+    # cv2.imshow('Canvas', imgCanvas)
     if cv2.waitKey(1) == ord('q'):
         break
